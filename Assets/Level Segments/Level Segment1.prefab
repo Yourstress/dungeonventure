@@ -60,6 +60,7 @@ MonoBehaviour:
   exitConnector:
     type: 0
     position: {x: 6, y: 9, z: 0}
+  tileObjects: []
 --- !u!328 &328000012062308030
 TileMap:
   m_ObjectHideFlags: 1
@@ -604,8 +605,38 @@ TileMap:
       second:
         serializedVersion: 1
         m_Color: {r: 1, g: 1, b: 1, a: 1}
-        m_TileSpriteIndex: 2
+        m_TileSpriteIndex: 4
         m_TileMatrixIndex: 3
+        m_SpawnObject: {fileID: 0}
+        m_TileFlags: 3
+        m_ColliderType: 0
+    data:
+      first: {x: -5, y: 3, z: 0}
+      second:
+        serializedVersion: 1
+        m_Color: {r: 1, g: 1, b: 1, a: 1}
+        m_TileSpriteIndex: 2
+        m_TileMatrixIndex: 1
+        m_SpawnObject: {fileID: 0}
+        m_TileFlags: 3
+        m_ColliderType: 0
+    data:
+      first: {x: -4, y: 3, z: 0}
+      second:
+        serializedVersion: 1
+        m_Color: {r: 1, g: 1, b: 1, a: 1}
+        m_TileSpriteIndex: 2
+        m_TileMatrixIndex: 1
+        m_SpawnObject: {fileID: 0}
+        m_TileFlags: 3
+        m_ColliderType: 0
+    data:
+      first: {x: -3, y: 3, z: 0}
+      second:
+        serializedVersion: 1
+        m_Color: {r: 1, g: 1, b: 1, a: 1}
+        m_TileSpriteIndex: 2
+        m_TileMatrixIndex: 1
         m_SpawnObject: {fileID: 0}
         m_TileFlags: 3
         m_ColliderType: 0
@@ -614,8 +645,8 @@ TileMap:
       second:
         serializedVersion: 1
         m_Color: {r: 1, g: 1, b: 1, a: 1}
-        m_TileSpriteIndex: 2
-        m_TileMatrixIndex: 0
+        m_TileSpriteIndex: 4
+        m_TileMatrixIndex: 1
         m_SpawnObject: {fileID: 0}
         m_TileFlags: 3
         m_ColliderType: 0
@@ -764,8 +795,8 @@ TileMap:
       second:
         serializedVersion: 1
         m_Color: {r: 1, g: 1, b: 1, a: 1}
-        m_TileSpriteIndex: 4
-        m_TileMatrixIndex: 3
+        m_TileSpriteIndex: 3
+        m_TileMatrixIndex: 0
         m_SpawnObject: {fileID: 0}
         m_TileFlags: 3
         m_ColliderType: 0
@@ -774,8 +805,8 @@ TileMap:
       second:
         serializedVersion: 1
         m_Color: {r: 1, g: 1, b: 1, a: 1}
-        m_TileSpriteIndex: 2
-        m_TileMatrixIndex: 1
+        m_TileSpriteIndex: 3
+        m_TileMatrixIndex: 0
         m_SpawnObject: {fileID: 0}
         m_TileFlags: 3
         m_ColliderType: 0
@@ -784,8 +815,8 @@ TileMap:
       second:
         serializedVersion: 1
         m_Color: {r: 1, g: 1, b: 1, a: 1}
-        m_TileSpriteIndex: 2
-        m_TileMatrixIndex: 1
+        m_TileSpriteIndex: 3
+        m_TileMatrixIndex: 0
         m_SpawnObject: {fileID: 0}
         m_TileFlags: 3
         m_ColliderType: 0
@@ -794,8 +825,8 @@ TileMap:
       second:
         serializedVersion: 1
         m_Color: {r: 1, g: 1, b: 1, a: 1}
-        m_TileSpriteIndex: 2
-        m_TileMatrixIndex: 1
+        m_TileSpriteIndex: 3
+        m_TileMatrixIndex: 0
         m_SpawnObject: {fileID: 0}
         m_TileFlags: 3
         m_ColliderType: 0
@@ -804,8 +835,8 @@ TileMap:
       second:
         serializedVersion: 1
         m_Color: {r: 1, g: 1, b: 1, a: 1}
-        m_TileSpriteIndex: 4
-        m_TileMatrixIndex: 1
+        m_TileSpriteIndex: 3
+        m_TileMatrixIndex: 0
         m_SpawnObject: {fileID: 0}
         m_TileFlags: 3
         m_ColliderType: 0
@@ -1944,6 +1975,15 @@ TileMap:
       first: {x: -6, y: 3, z: 0}
       second: 0
     data:
+      first: {x: -5, y: 3, z: 0}
+      second: 0
+    data:
+      first: {x: -4, y: 3, z: 0}
+      second: 0
+    data:
+      first: {x: -3, y: 3, z: 0}
+      second: 0
+    data:
       first: {x: -2, y: 3, z: 0}
       second: 0
     data:
@@ -2296,7 +2336,7 @@ TileMap:
       second: 0
   m_TileAssetArray:
   - serializedVersion: 1
-    m_RefCount: 171
+    m_RefCount: 174
     m_Data: {fileID: 11400000, guid: 7d079f645284a49d58bd31b470f0c021, type: 2}
   m_TileSpriteArray:
   - serializedVersion: 1
@@ -2306,10 +2346,10 @@ TileMap:
     m_RefCount: 0
     m_Data: {fileID: 0}
   - serializedVersion: 1
-    m_RefCount: 54
+    m_RefCount: 52
     m_Data: {fileID: 21300000, guid: 20da6e509d484434a8463489f8df9a9a, type: 3}
   - serializedVersion: 1
-    m_RefCount: 105
+    m_RefCount: 110
     m_Data: {fileID: 21300000, guid: 5b688bed0dca0453dbe1155b1439bcb1, type: 3}
   - serializedVersion: 1
     m_RefCount: 4
@@ -2319,7 +2359,7 @@ TileMap:
     m_Data: {fileID: 0}
   m_TileMatrixArray:
   - serializedVersion: 1
-    m_RefCount: 118
+    m_RefCount: 122
     m_Data:
       e00: 1
       e01: 0
@@ -2376,7 +2416,7 @@ TileMap:
       e32: 0
       e33: 1
   - serializedVersion: 1
-    m_RefCount: 17
+    m_RefCount: 16
     m_Data:
       e00: -1
       e01: -0.00000008742278

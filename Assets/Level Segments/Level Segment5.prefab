@@ -60,6 +60,7 @@ MonoBehaviour:
   exitConnector:
     type: 3
     position: {x: 8, y: 5, z: 0}
+  tileObjects: []
 --- !u!328 &328000012583506174
 TileMap:
   m_ObjectHideFlags: 1
