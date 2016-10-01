@@ -10,6 +10,9 @@ public class Movement : MonoBehaviour {
 	// keep a reference to this somewhere
 	LevelNavigator navigator;
 
+	public float waitBetweenMoves = 0.1f;
+	private float nextAllowedMoveAt = 0;
+
 	// Use this for initialization
 	void Start() {
 		level = GameObject.FindObjectOfType<Level> ();
@@ -19,11 +22,17 @@ public class Movement : MonoBehaviour {
 
 	void Update() {	
 
+		// constrict movement steps to specific intervals
+		if (Time.time < nextAllowedMoveAt)
+			return;
+
+		nextAllowedMoveAt = Time.time + waitBetweenMoves;
+		
 		bool move = false;
-		bool upWalkH = Input.GetKeyDown(KeyCode.UpArrow);
-		bool rightWalkH = Input.GetKeyDown(KeyCode.RightArrow);
-		bool downWalkH = Input.GetKeyDown(KeyCode.DownArrow);
-		bool leftWalkH = Input.GetKeyDown(KeyCode.LeftArrow);
+		bool upWalkH = Input.GetKey(KeyCode.UpArrow);
+		bool rightWalkH = Input.GetKey(KeyCode.RightArrow);
+		bool downWalkH = Input.GetKey(KeyCode.DownArrow);
+		bool leftWalkH = Input.GetKey(KeyCode.LeftArrow);
 
 		if (upWalkH) {			
 			if (!navigator.MoveUp ()) {
