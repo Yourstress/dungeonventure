@@ -26,6 +26,13 @@ public class ModularTileMapEditor : Editor
 		{
 			tileMap.tileObjects.Add (newTileObj);
 		}
+
+		if (GUILayout.Button("Update Tile Objects"))
+		{
+			tileMap.tileObjects.Clear ();
+			TileObject[] tileObjs = tileMap.GetComponentsInChildren<TileObject> ();
+			tileMap.tileObjects.AddRange (tileObjs);
+		}
 	}
 
 	void OnSceneGUI()

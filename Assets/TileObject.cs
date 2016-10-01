@@ -9,6 +9,7 @@ public class TileObject : MonoBehaviour
 		Pickup,
 		Enemy,
 		Trap,
+		Environment,
 	}
 
 	public Type tileType;

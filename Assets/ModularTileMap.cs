@@ -18,6 +18,8 @@ public class Connector
 {
 	public ConnectorType type;
 	public Vector3Int position;
+
+	public ModularTileMap connectedSegment;
 }
 
 public class ModularTileMap : MonoBehaviour {

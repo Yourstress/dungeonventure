@@ -8,7 +8,9 @@ public class Level : MonoBehaviour
 	public ModularTileMap[] tileMapSegmentPrefabs;
 
 	List<KeyValuePair<ModularTileMap, Connector>> freeConnectors = new List<KeyValuePair<ModularTileMap,Connector>>();
-	private ConnectorType lastExitConnector = ConnectorType.Top;
+
+	private ModularTileMap lastSegment = null;
+	private Connector lastExitConnector = new Connector() { type = ConnectorType.Top };
 
 	public int spawnSegmentsOnStart = 20;
 
@@ -40,7 +42,7 @@ public class Level : MonoBehaviour
 
 	void SpawnLevel()
 	{
-		ModularTileMap newSegment = InstantiateCompatibleSegment (lastExitConnector);;
+		ModularTileMap newSegment = InstantiateCompatibleSegment (lastExitConnector.type);
 
 		// first one? put it at 0,0
 		if (freeConnectors.Count == 0) {
@@ -50,7 +52,7 @@ public class Level : MonoBehaviour
 		else
 		{
 			// find an exit for this entrance
-			KeyValuePair<ModularTileMap,Connector> exitSegment = FindExitSegment(lastExitConnector, true);
+			KeyValuePair<ModularTileMap,Connector> exitSegment = FindExitSegment(lastExitConnector.type, true);
 
 			// figure out the intersection point (the exit segment's connector point)
 			Vector3 exitWorldPos = exitSegment.Key.tileMap.CellToWorld(exitSegment.Value.position);
@@ -60,9 +62,16 @@ public class Level : MonoBehaviour
 
 			// move new segment to the exit segment offseted by this segment's entrance position
 			newSegment.transform.position = exitWorldPos - entranceLoclPos;
+
+			// connect the last segment's exit to this new segment's entrance
+			lastExitConnector.connectedSegment = newSegment;
+
+			// also connect this tile map's entrance back to the last segment's exit
+			newSegment.entranceConnector.connectedSegment = lastSegment;
 		}
 
-		lastExitConnector = newSegment.exitConnector.type;
+		lastExitConnector = newSegment.exitConnector;
+		lastSegment = newSegment;
 
 		// add its connectors to the free connectors array
 		freeConnectors.Add(new KeyValuePair<ModularTileMap, Connector>(newSegment, newSegment.entranceConnector));

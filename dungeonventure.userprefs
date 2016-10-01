@@ -1,0 +1,35 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj" RefactoringSettings.EnableRefactorings="True">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="../../Downloads/Unity-Technologies-2ddemos-d071e47dc66c/PreviewR101/Assets/Xtras/UnityChan2D/Scripts/UnityChan2DController.cs">
+    <Files>
+      <File FileName="Assets/TileObject.cs" Line="8" Column="3" />
+      <File FileName="Assets/Editor/ModularTileMapEditor.cs" Line="60" Column="1" />
+      <File FileName="Assets/LevelNavigator.cs" Line="1" Column="1" />
+      <File FileName="../../Downloads/Unity-Technologies-2ddemos-d071e47dc66c/PreviewR101/Assets/Xtras/UnityChan2D/Scripts/UnityChan2DController.cs" Line="98" Column="19" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="dungeonventure" expanded="True">
+            <Node name="Assembly-CSharp" expanded="True">
+              <Node name="Tiles" expanded="True" />
+              <Node name="LevelNavigator.cs" selected="True" />
+            </Node>
+            <Node name="Assembly-CSharp-Editor" expanded="True">
+              <Node name="Editor" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.NUnit.TestPad">
+        <State name="__root__">
+          <Node name="dungeonventure" expanded="True" selected="True" />
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
