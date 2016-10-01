@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.TileMap;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -9,7 +10,7 @@ using UnityEditor;
 namespace UnityEngine
 {
 	[Serializable]
-	public class PipelineTile : BaseTile
+	public class PipelineTile : TileBase
 	{
 		[SerializeField]
 		public Sprite[] m_Sprites;
@@ -46,13 +47,13 @@ namespace UnityEngine
 			{
 				tileData.sprite = m_Sprites[index];
 				tileData.transform = GetTransform((byte)mask);
-				tileData.flags = (int) (TileFlags.OverrideTransform | TileFlags.OverrideColor);
+				tileData.flags = (int) (TileFlags.LockTransform | TileFlags.LockColor);
 			}
 		}
 
 		private bool TileValue(ITileMap tileMap, Vector3Int position)
 		{
-			BaseTile tile = tileMap.GetTile(position);
+			TileBase tile = tileMap.GetTile(position);
 			return (tile != null && tile == this);
 		}
 

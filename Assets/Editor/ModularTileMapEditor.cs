@@ -1,6 +1,7 @@
 ﻿
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.TileMap;
 
 [CustomEditor(typeof(ModularTileMap))]
 public class ModularTileMapEditor : Editor

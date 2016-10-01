@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-
+using UnityEngine.TileMap;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -9,7 +9,7 @@ using UnityEditor;
 namespace UnityEngine
 {
 	[Serializable]
-	public class AnimatedTile : BaseTile
+	public class AnimatedTile : TileBase
 	{
 		public Sprite[] m_AnimatedSprites = new Sprite[0];
 		public float m_MinSpeed = 1f;
@@ -33,7 +33,7 @@ namespace UnityEngine
 			{
 				tileAnimationData.animatedSprites = m_AnimatedSprites;
 				tileAnimationData.animationSpeed = Random.Range(m_MinSpeed, m_MaxSpeed);
-				tileAnimationData.animationTimeOffset = m_AnimationTimeOffset;
+				tileAnimationData.animationStartTime = m_AnimationTimeOffset;
 				return true;
 			}
 			return false;
