@@ -21,17 +21,23 @@ public class Hero : MonoBehaviour
 
 	bool ProcessTrap(Collider2D coll)
 	{
-		Trap trap = coll.GetComponent<Trap>();
+		Trap trap = coll.GetComponentInParent<Trap>();
 		if (trap != null && !trap.isTrapActivated)
 		{
 			trap.ActivateTrap();
 
-			Die();
+
+			Invoke("DieByTrap", 1);
 
 			return true;
 		}
 
 		return false;
+	}
+
+	void DieByTrap()
+	{
+		Die("You've been sliced dead by a trap!");
 	}
 
 	bool ProcessEnemy(Collider2D coll)
@@ -40,7 +46,7 @@ public class Hero : MonoBehaviour
 
 		if (enemy != null)
 		{
-			Destroy(enemy.gameObject);
+			Die("You've been slain by an enemy!");
 			return true;
 		}
 
@@ -52,26 +58,15 @@ public class Hero : MonoBehaviour
 		Sword sword = coll.GetComponentInParent<Sword>();
 		if (sword != null)
 		{
-			Debug.Log("Picked up");
-			sword.SetPickedUp(true);
+			PickupWeapon(sword);
+
 			return true;
 		}
 
 		Bow bow = coll.GetComponentInParent<Bow>();
 		if (bow != null && !bow.isEquipped)
 		{
-			bow.SetPickedUp(true);
-
-			if (currentWeapon != null)
-			{
-				currentWeapon.equippedParent.transform.SetParent(currentWeapon.transform);
-				currentWeapon.SetPickedUp(false);
-			}
-
-			currentWeapon = bow;
-			currentWeapon.equippedParent.transform.SetParent(weaponParent);
-			currentWeapon.equippedParent.transform.localPosition = new Vector3(0, .33f, 0);
-			currentWeapon.equippedParent.transform.localEulerAngles = Vector3.zero;
+			PickupWeapon(bow);
 
 			return true;
 		}
@@ -79,8 +74,28 @@ public class Hero : MonoBehaviour
 		return false;
 	}
 
-	void Die()
+	void PickupWeapon(Weapon weapon)
 	{
+		weapon.SetPickedUp(true);
+
+		if (currentWeapon != null)
+		{
+			Debug.Log("Dropping " + currentWeapon.name, currentWeapon.gameObject);
+			currentWeapon.equippedParent.transform.SetParent(currentWeapon.transform);
+			currentWeapon.SetPickedUp(false);
+		}
+
+		currentWeapon = weapon;
+		Debug.Log("picking up " + currentWeapon.name, currentWeapon.gameObject);
+		currentWeapon.equippedParent.transform.SetParent(weaponParent);
+		currentWeapon.equippedParent.transform.localPosition = new Vector3(0, .33f, 0);
+		currentWeapon.equippedParent.transform.localEulerAngles = Vector3.zero;
+	}
+
+	void Die(string message)
+	{
+		UI.Shared.ShowKilledScreen(message);
+
 		Destroy(gameObject);
 	}
 }

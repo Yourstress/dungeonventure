@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: cc7f969c7f02544ccb72673526edc159
+timeCreated: 1475331432
+licenseType: Pro
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Lunchtime Doubly So
+  fontNames:
+  - Lunchtime Doubly So
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
