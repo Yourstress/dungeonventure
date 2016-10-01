@@ -19,7 +19,9 @@ public class Level : MonoBehaviour
 	void Start()
 	{
 		for (int x = 0; x < spawnSegmentsOnStart; x++)
+		{
 			SpawnLevel ();
+		}
 	}
 
 	ModularTileMap InstantiateCompatibleSegment(ConnectorType connector)
