@@ -19,4 +19,8 @@ public class Weapon : MonoBehaviour {
 		floorParent.SetActive(!isEquipped);
 		equippedParent.SetActive(isEquipped);
 	}
+
+	public virtual void Shoot()
+	{
+	}
 }

@@ -35,24 +35,26 @@ public class Movement : MonoBehaviour {
 		nextAllowedMoveAt = Time.time + waitBetweenMoves;
 		
 		bool moveHero = false;
-		bool upWalkH = Input.GetKey(KeyCode.UpArrow);
-		bool rightWalkH = Input.GetKey(KeyCode.RightArrow);
-		bool downWalkH = Input.GetKey(KeyCode.DownArrow);
-		bool leftWalkH = Input.GetKey(KeyCode.LeftArrow);
+		bool upWalkH = Input.GetKeyDown(KeyCode.UpArrow);
+		bool rightWalkH = Input.GetKeyDown(KeyCode.RightArrow);
+		bool downWalkH = Input.GetKeyDown(KeyCode.DownArrow);
+		bool leftWalkH = Input.GetKeyDown(KeyCode.LeftArrow);
 
 		bool moveSidekick = false;
-		bool upWalkS = Input.GetKey(KeyCode.W);
-		bool rightWalkS = Input.GetKey(KeyCode.D);
-		bool downWalkS = Input.GetKey(KeyCode.S);
-		bool leftWalkS = Input.GetKey(KeyCode.A);
+		bool upWalkS = Input.GetKeyDown(KeyCode.W);
+		bool rightWalkS = Input.GetKeyDown(KeyCode.D);
+		bool downWalkS = Input.GetKeyDown(KeyCode.S);
+		bool leftWalkS = Input.GetKeyDown(KeyCode.A);
 
 		// rotate towards move target
 		Vector3 targetRot = Vector3.zero;
 		Vector3 sidekickRot = Vector3.zero;
+
+		Vector3 prevWorldPosition = navigator.WorldPosition;
 		
 		if (upWalkH) {			
 			if (!navigator.MoveUp ()) {
-				Debug.Log ("Nope!");
+//				Debug.Log ("Nope!");
 			} else
 			{
 				moveHero = true;
@@ -62,7 +64,7 @@ public class Movement : MonoBehaviour {
 
 		else if (rightWalkH) {			
 			if (!navigator.MoveRight ()) {
-				Debug.Log ("Nope!");
+//				Debug.Log ("Nope!");
 			} else
 			{
 				moveHero = true;		
@@ -72,7 +74,7 @@ public class Movement : MonoBehaviour {
 
 		else if (downWalkH) {			
 			if (!navigator.MoveDown ()) {
-				Debug.Log ("Nope!");
+//				Debug.Log ("Nope!");
 			} else
 			{
 				moveHero = true;		
@@ -82,57 +84,55 @@ public class Movement : MonoBehaviour {
 
 		else if (leftWalkH) {			
 			if (!navigator.MoveLeft ()) {
-				Debug.Log ("Nope!");
+//				Debug.Log ("Nope!");
 			} else
 			{
 				moveHero = true;		
 				targetRot.z = 90;
 			}
 		}
+			
 
-
-
-
-		if (upWalkS) {			
-			if (!navigator.MoveUp ()) {
-				Debug.Log ("Nope!");
-			} else
-			{
-				moveSidekick = true;
-				sidekickRot.z = 0;
-			}
-		} 
-
-		else if (rightWalkS) {			
-			if (!navigator.MoveRight ()) {
-				Debug.Log ("Nope!");
-			} else
-			{
-				moveSidekick = true;		
-				sidekickRot.z = -90;
-			}
-		} 
-
-		else if (downWalkS) {			
-			if (!navigator.MoveDown ()) {
-				Debug.Log ("Nope!");
-			} else
-			{
-				moveSidekick = true;		
-				sidekickRot.z = 180;
-			}
-		} 
-
-		else if (leftWalkS) {			
-			if (!navigator.MoveLeft ()) {
-				Debug.Log ("Nope!");
-			} else
-			{
-				moveSidekick = true;		
-				sidekickRot.z = 90;
-			}
-		}
-					
+//		if (upWalkS) {			
+//			if (!navigator.MoveUp ()) {
+////				Debug.Log ("Nope!");
+//			} else
+//			{
+//				moveSidekick = true;
+//				sidekickRot.z = 0;
+//			}
+//		} 
+//
+//		else if (rightWalkS) {			
+//			if (!navigator.MoveRight ()) {
+////				Debug.Log ("Nope!");
+//			} else
+//			{
+//				moveSidekick = true;		
+//				sidekickRot.z = -90;
+//			}
+//		} 
+//
+//		else if (downWalkS) {			
+//			if (!navigator.MoveDown ()) {
+////				Debug.Log ("Nope!");
+//			} else
+//			{
+//				moveSidekick = true;		
+//				sidekickRot.z = 180;
+//			}
+//		} 
+//
+//		else if (leftWalkS) {			
+//			if (!navigator.MoveLeft ()) {
+////				Debug.Log ("Nope!");
+//			} else
+//			{
+//				moveSidekick = true;		
+//				sidekickRot.z = 90;
+//			}
+//		}
+//					
 
 		if (moveHero) {
 			// rotate towards target
@@ -140,40 +140,59 @@ public class Movement : MonoBehaviour {
 			lastHeroPosition = transform.position;
 			transform.DOMove (navigator.WorldPosition, 0.2f, false);
 
+
+
+
+			//measure the distance between the hero and the sidekick
+			float distanceBetweenCharactersX = transform.position.x - sidekickCharacter.transform.position.x;
+			float distanceBetweenCharactersY = transform.position.y - sidekickCharacter.transform.position.y;
+
+			//if the sidekick is in a valid position, leave him be
+			//otherwise, move him to the hero's last position
+			if (distanceBetweenCharactersX >= 1.0f && distanceBetweenCharactersX <= 1.5f ||
+				distanceBetweenCharactersX >= -1.0f && distanceBetweenCharactersX <= -1.5f ||
+				distanceBetweenCharactersY >= 1.0f && distanceBetweenCharactersY <= 1.5f ||
+				distanceBetweenCharactersY >= -1.0f && distanceBetweenCharactersY <= -1.5f) {
+
+				//rotate to face same direction as player
+				rotateSidekick.DOLocalRotate(targetRot, 0.15f);
+				sidekickCharacter.transform.DOMove (lastHeroPosition, 0.2f, false);
+
+			}
+
+			//teleport if sidekick is too far away
+			else if (distanceBetweenCharactersX >= 1.5f || distanceBetweenCharactersX <= -1.5f ||
+				distanceBetweenCharactersY >= 1.5f || distanceBetweenCharactersY <= -1.5f) {
+
+				rotateSidekick.DOLocalRotate(targetRot, 0.15f);
+				sidekickCharacter.transform.DOMove (lastHeroPosition, 0.2f, false);
+			}
+			else
+				sidekickCharacter.transform.DOMove (lastHeroPosition, 0.2f, false);
+
+			Vector3 diff = lastHeroPosition - navigator.WorldPosition;
+			float angle = 0;
+			if (diff.x > 0.1f)
+				angle = -90;
+			else if (diff.x < -.1f)
+				angle = 90;
+			if (diff.y > 0.1f)
+				angle = 0;
+			else if (diff.y < -0.1f)
+				angle = 180;
+			rotateSidekick.DOLocalRotate(new Vector3(0,0,angle), 0.15f).SetDelay(.15f);
 		}
 
-		if (moveSidekick) {
-			// rotate towards target
-			rotateSidekick.DOLocalRotate(sidekickRot, 0.15f);
-			sidekickCharacter.transform.DOMove (navigator.WorldPosition, 0.2f, false);
+//		if (moveSidekick) {
+//			// rotate towards target
+//			rotateSidekick.DOLocalRotate(sidekickRot, 0.15f);
+//			sidekickCharacter.transform.DOMove (prevWorldPosition, 0.2f, false);
+//
+//		}
+//		sidekickCharacter.transform.position = lastHeroPosition;
+				 
+//		return;
 
-		}
-
-
-		//measure the distance between the hero and the sidekick
-		float distanceBetweenCharactersX = transform.position.x - sidekickCharacter.transform.position.x;
-		float distanceBetweenCharactersY = transform.position.y - sidekickCharacter.transform.position.y;
-
-		//if the sidekick is in a valid position, leave him be
-		//otherwise, move him to the hero's last position
-		if (distanceBetweenCharactersX >= 1.0f && distanceBetweenCharactersX <= 1.5f ||
-			distanceBetweenCharactersX >= -1.0f && distanceBetweenCharactersX <= -1.5f ||
-			distanceBetweenCharactersY >= 1.0f && distanceBetweenCharactersY <= 1.5f ||
-			distanceBetweenCharactersY >= -1.0f && distanceBetweenCharactersY <= -1.5f) {
-
-			//rotate to face same direction as player
-			rotateSidekick.DOLocalRotate(targetRot, 0.15f);
-			sidekickCharacter.transform.DOMove (lastHeroPosition, 0.2f, false);			 
-
-		}
-
-		//teleport if sidekick is too far away
-		else if (distanceBetweenCharactersX >= 1.5f || distanceBetweenCharactersX <= -1.5f ||
-			distanceBetweenCharactersY >= 1.5f || distanceBetweenCharactersY <= -1.5f) {
-
-			rotateSidekick.DOLocalRotate(targetRot, 0.15f);
-			sidekickCharacter.transform.DOMove (navigator.WorldPosition, 0.2f, false);			 
-		}
 	}
 }
 
