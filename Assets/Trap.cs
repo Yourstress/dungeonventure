@@ -16,7 +16,7 @@ public class Trap : MonoBehaviour {
 			ActivateTrap ();
 	}
 
-	void ActivateTrap()
+	public void ActivateTrap()
 	{
 		// toggle trap activation
 		isTrapActivated = !isTrapActivated;
