@@ -26,7 +26,8 @@ public class Hero : MonoBehaviour
 		{
 			trap.ActivateTrap();
 
-
+			// destroy Movement script
+			Destroy(GetComponent<Movement>());
 			Invoke("DieByTrap", 1);
 
 			return true;
@@ -97,5 +98,11 @@ public class Hero : MonoBehaviour
 		UI.Shared.ShowKilledScreen(message);
 
 		Destroy(gameObject);
+	}
+
+	void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.Space) && currentWeapon != null)
+			currentWeapon.Shoot();
 	}
 }

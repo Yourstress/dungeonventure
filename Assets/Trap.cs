@@ -10,12 +10,6 @@ public class Trap : MonoBehaviour {
 
 	public bool isTrapActivated { get; private set; }
 
-	void Update()
-	{
-		if (Input.GetKeyDown (KeyCode.Space))
-			ActivateTrap ();
-	}
-
 	public void ActivateTrap()
 	{
 		// toggle trap activation

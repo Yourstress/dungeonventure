@@ -18,6 +18,12 @@ public class Enemy : MonoBehaviour
 		StartCoroutine(MoveEnemy());
 	}
 
+	void OnTriggerEnter2D(Collider2D col)
+	{
+		if (col.name == "arrow" || col.name == "sprite"/*sword*/)
+			Destroy(gameObject);
+	}
+
 	IEnumerator MoveEnemy()
 	{
 		while (!isDead)

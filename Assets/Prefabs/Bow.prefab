@@ -68,6 +68,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000011258539962}
   - component: {fileID: 212000010426192924}
+  - component: {fileID: 61000010920289750}
   m_Layer: 0
   m_Name: arrow
   m_TagString: Untagged
@@ -221,7 +222,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011979296966}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -0, y: -0.09, z: 0}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4000010518588296}
@@ -304,7 +305,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013638200152}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.96, y: 0.96, z: 0}
+  m_LocalPosition: {x: -0.96, y: 0.64, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4000013847290506}
@@ -342,6 +343,23 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.3
+--- !u!61 &61000010920289750
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011979296966}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.058031745, y: 0.00014019758}
+  serializedVersion: 2
+  m_Size: {x: 0.5159642, y: 0.20023827}
+  m_EdgeRadius: 0
+  m_AutoTiling: 1
 --- !u!114 &114000013110816216
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -367,6 +385,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floorParent: {fileID: 1000013198349828}
   equippedParent: {fileID: 1000012532122920}
+  arrow: {fileID: 1000011979296966}
+  arrowSpeed: 1
+  arrowDistance: 3
 --- !u!198 &198000013677250220
 ParticleSystem:
   m_ObjectHideFlags: 1
