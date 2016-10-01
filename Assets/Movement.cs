@@ -56,7 +56,7 @@ public class Movement : MonoBehaviour {
 			
 
 		if (move) {
-			transform.DOMove (navigator.WorldPosition, 0.5f, false);
+			transform.DOMove (navigator.WorldPosition, 0.2f, false);
 		}
 
 	}
