@@ -43,7 +43,12 @@ public class LevelNavigator : ICloneable
 		return Move (0, -1);
 	}
 
-	bool Move(int offsetX, int offsetY)
+	public void MoveToWorld(Vector3 worldPos)
+	{
+		currentSegmentPosition = currentMapSegment.tileMap.WorldToCell(worldPos);
+	}
+
+	public bool Move(int offsetX, int offsetY)
 	{
 		Vector3Int targetTilePos = currentSegmentPosition;
 		targetTilePos.x += offsetX;
@@ -51,7 +56,7 @@ public class LevelNavigator : ICloneable
 
 		// ignore this tile if it's not walkable
 		Sprite targetTileSprite = currentMapSegment.tileMap.GetSprite(targetTilePos);
-		if (targetTileSprite.name != "grass")
+		if (targetTileSprite != null && targetTileSprite.name != "grass")
 			return false;
 
 		// move the current position there
