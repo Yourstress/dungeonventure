@@ -10,6 +10,8 @@ public class Movement : MonoBehaviour {
 	// keep a reference to this somewhere
 	LevelNavigator navigator;
 
+	public Transform rotateSprite;
+
 	public float waitBetweenMoves = 0.1f;
 	private float nextAllowedMoveAt = 0;
 
@@ -34,37 +36,56 @@ public class Movement : MonoBehaviour {
 		bool downWalkH = Input.GetKey(KeyCode.DownArrow);
 		bool leftWalkH = Input.GetKey(KeyCode.LeftArrow);
 
+		// rotate towards move target
+		Vector3 targetRot = Vector3.zero;
+		
 		if (upWalkH) {			
 			if (!navigator.MoveUp ()) {
 				Debug.Log ("Nope!");
 			} else
+			{
 				move = true;
+				targetRot.z = 0;
+			}
 		} 
 
 		else if (rightWalkH) {			
 			if (!navigator.MoveRight ()) {
 				Debug.Log ("Nope!");
 			} else
+			{
 				move = true;		
+				targetRot.z = -90;
+			}
 		} 
 
 		else if (downWalkH) {			
 			if (!navigator.MoveDown ()) {
 				Debug.Log ("Nope!");
 			} else
+			{
 				move = true;		
+				targetRot.z = 180;
+			}
 		} 
 
 		else if (leftWalkH) {			
 			if (!navigator.MoveLeft ()) {
 				Debug.Log ("Nope!");
 			} else
+			{
 				move = true;		
+				targetRot.z = 90;
+			}
 		}
+
 
 			
 
 		if (move) {
+			// rotate towards target
+			rotateSprite.DOLocalRotate(targetRot, 0.15f);
+
 			transform.DOMove (navigator.WorldPosition, 0.2f, false);
 		}
 
